@@ -1,0 +1,362 @@
+/* ============================
+   📄 admin.css - Giao diện quản trị + Responsive Mobile Menu
+   ============================ */
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* ===== SIDEBAR ===== */
+aside {
+  width: 260px;
+  background: #1f2937;
+  min-height: 100vh;
+  color: white;
+  padding: 25px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Sidebar ẩn khi mobile */
+@media (max-width: 768px) {
+  aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+  aside.open {
+    transform: translateX(0);
+  }
+}
+
+aside h2 {
+  margin: 0 0 25px;
+  font-size: 22px;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside ul li button {
+  background: none;
+  border: none;
+  color: #cbd5e0;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+aside ul li button:hover,
+aside ul li button.active {
+  background-color: #374151;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== TOGGLE BUTTON FOR SIDEBAR ===== */
+#menuToggle {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  z-index: 1100;
+  font-size: 20px;
+  transition: left 0.25s ease;
+}
+
+#menuToggle.open {
+  left: 215px; /* dịch sang bên phải khi sidebar mở */
+  transition: left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  #menuToggle {
+    display: block;
+  }
+
+  table {
+    display: block;
+  }
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+  flex-grow: 1;
+  padding: 40px;
+  background: #eef1f5;
+  width: 100%;
+  overflow-x: auto;
+}
+
+h2 {
+  color: #1e293b;
+  font-size: 24px;
+}
+
+/* ===== FORMS ===== */
+form input,
+form button,
+form select {
+  padding: 10px;
+  margin: 8px 5px 8px 0;
+  font-size: 16px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form select {
+  width: calc(33.33% - 12px);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+form button:hover {
+  background: #1e40af;
+}
+
+/* ===== TABLES ===== */
+table {
+  min-width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: auto;
+}
+
+th,
+td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+  white-space: nowrap;
+}
+
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+
+td img {
+  max-width: 60px;
+  border-radius: 4px;
+}
+
+td button {
+  background: #e11d48;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+td button:hover {
+  background: #be123c;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  display: none;
+  margin-bottom: 30px;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section.active {
+  display: block;
+}
+
+/* ===== DIGITAL OPTIONS ===== */
+.option-list input {
+  margin-bottom: 5px;
+  width: auto;
+}
+
+.duration-block {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+/* ===== POPUP CHỈNH SỬA ===== */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-overlay.show {
+  display: flex;
+}
+
+.popup {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.popup h3 {
+  margin-top: 0;
+}
+
+.popup input,
+.popup select {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#editStt {
+  width: 100px;
+}
+
+.popup-buttons {
+  text-align: right;
+}
+
+.popup-buttons button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup-buttons .save {
+  background-color: #10b981;
+  color: white;
+}
+
+.popup-buttons .cancel {
+  background-color: #9ca3af;
+  color: white;
+}
+
+#editOptions input {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+#editOptions div {
+  margin-bottom: 10px;
+}
+
+.close-popup {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #999;
+}
+
+.close-popup:hover {
+  color: #000;
+}
+
+/* ===== BIỂU ĐỒ THỐNG KÊ ===== */
+.all-chart {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.chart-container {
+  flex: 1;
+  max-width: 100%;
+  padding: 20px;
+  margin: 10px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 300px;
+}
+
+@media (min-width: 1024px) {
+  .chart-container {
+    flex: 1 1 45%;
+  }
+}
+
+/* ===== CẢNH BÁO GIÁ ===== */
+.price-error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* ===== NÚT THÊM SẢN PHẨM MỞ RỘNG ===== */
+#showPhysicalForm.active,
+#showDigitalForm.active {
+  background-color: #dc2626;
+  color: white;
+}

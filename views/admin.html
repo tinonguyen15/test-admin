@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin - Quản lý sản phẩm</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/admin.responsive.css" />
+  </head>
+  <body>
+    <aside>
+      <h2>Quản trị</h2>
+      <ul>
+        <li>
+          <button class="tab-btn active" data-target="dashboard-section">
+            Bảng thống kê
+          </button>
+        </li>
+        <li>
+          <button class="tab-btn" data-target="setting-section">
+            Cài đặt chung
+          </button>
+        </li>
+        <li>
+          <button class="tab-btn" data-target="physical-section">
+            Sản phẩm - thông thường
+          </button>
+        </li>
+        <li>
+          <button class="tab-btn" data-target="digital-section">
+            Sản phẩm - mở rộng
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <main>
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="section active">
+        <div class="all-chart">
+          <div class="chart-container">
+            <h3>Thống kê theo loại sản phẩm</h3>
+            <canvas id="typeChartCanvas"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Thống kê theo trạng thái sản phẩm</h3>
+            <canvas id="statusChartCanvas"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sản phẩm thường -->
+      <section id="physical-section" class="section">
+        <h2>Sản phẩm thường</h2>
+        <button id="showPhysicalForm" class="add-btn">➕ Thêm sản phẩm</button>
+
+        <div id="physicalFormContainer" style="display: none">
+          <form id="physical-form" enctype="multipart/form-data">
+            <label
+              >Tên sản phẩm:
+              <input type="text" name="name" required />
+            </label>
+            <label
+              >Ảnh:
+              <input type="file" name="image" accept="image/*" required />
+            </label>
+            <label
+              >Trạng thái:
+              <select name="status" required>
+                <option value="con-hang">Đang bán</option>
+                <option value="het-hang">Hết hàng</option>
+                <option value="sap-ra-mat">Sắp ra mắt</option>
+              </select>
+            </label>
+
+            <div id="variantList" class="variant-list"></div>
+            <button type="button" id="addVariant">+ Thêm phân loại</button>
+            <button type="submit">
+              <i class="fas fa-plus-circle"></i> Xong
+            </button>
+          </form>
+        </div>
+
+        <h2>Danh sách sản phẩm</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>(Size/Giá)</th>
+                <th>Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="physicalTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Sản phẩm mở rộng -->
+      <section id="digital-section" class="section">
+        <h2>Sản phẩm mở rộng</h2>
+        <button id="showDigitalForm" class="add-btn">➕ Thêm sản phẩm</button>
+
+        <div id="digitalFormContainer" style="display: none">
+          <form id="digital-form" enctype="multipart/form-data">
+            <label
+              >Tên sản phẩm:
+              <input type="text" name="name" required />
+            </label>
+            <label
+              >Ảnh:
+              <input type="file" name="image" accept="image/*" required />
+            </label>
+            <label
+              >Trạng thái:
+              <select name="status" required>
+                <option value="con-hang">Đang bán</option>
+                <option value="het-hang">Hết hàng</option>
+                <option value="sap-ra-mat">Sắp ra mắt</option>
+              </select>
+            </label>
+
+            <div id="durationList" class="duration-list"></div>
+            <button type="button" id="addDuration">+ Thêm Options</button>
+            <button type="submit">
+              <i class="fas fa-plus-circle"></i> Xong
+            </button>
+          </form>
+        </div>
+
+        <h2>Danh sách sản phẩm</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Options - nhánh - Giá</th>
+                <th>Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="digitalTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Popup chỉnh sửa giữ nguyên -->
+    <div class="popup-overlay" id="editPopup">
+      <form class="popup" onsubmit="event.preventDefault(); saveEdit()">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+        <h3>Chỉnh sửa sản phẩm</h3>
+
+        <label
+          >STT:
+          <input type="number" id="editStt" />
+        </label>
+        <label
+          >Tên sản phẩm:
+          <input type="text" id="editName" />
+        </label>
+        <label
+          >Ảnh:
+          <input type="file" id="editImage" />
+        </label>
+        <label for="editStatus">Trạng thái:</label>
+        <select id="editStatus">
+          <option value="con-hang">Đang bán</option>
+          <option value="het-hang">Hết hàng</option>
+          <option value="sap-ra-mat">Sắp ra mắt</option>
+        </select>
+
+        <div id="editOptions">
+          <label>Phân loại:</label>
+          <div id="editVariantList" class="space-y-2"></div>
+          <button
+            id="addEditVariant"
+            type="button"
+            class="px-2 py-1 bg-green-600 text-white rounded mt-2"
+          >
+            ➕ Thêm phân loại
+          </button>
+        </div>
+
+        <div class="popup-buttons">
+          <button type="submit" class="save">Lưu</button>
+          <button type="button" class="cancel" onclick="closePopup()">
+            Hủy
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Nút 3 gạch mở menu -->
+    <button id="menuToggle"><i class="fas fa-bars"></i></button>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const sidebar = document.querySelector("aside");
+      const icon = menuToggle.querySelector("i");
+
+      function toggleMenu() {
+        sidebar.classList.toggle("open");
+        menuToggle.classList.toggle("open");
+
+        if (sidebar.classList.contains("open")) {
+          icon.classList.remove("fa-bars");
+          icon.classList.add("fa-times");
+          document.addEventListener("click", handleOutsideClick);
+        } else {
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+          document.removeEventListener("click", handleOutsideClick);
+        }
+      }
+
+      function handleOutsideClick(e) {
+        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+          sidebar.classList.remove("open");
+          menuToggle.classList.remove("open");
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+          document.removeEventListener("click", handleOutsideClick);
+        }
+      }
+
+      menuToggle.addEventListener("click", (e) => {
+        e.stopPropagation(); // tránh kích hoạt sự kiện click ngoài
+        toggleMenu();
+      });
+    </script>
+
+    <!-- Script chính khởi tạo -->
+    <script type="module" src="/js/admin/admin.js"></script>
+  </body>
+</html>
