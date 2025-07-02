@@ -96,7 +96,7 @@ body {
   justify-self: center;
 }
 
-.container {
+.content-top .container {
   display: flex;
   gap: 5px;
 }
@@ -123,11 +123,6 @@ body {
 .category li {
   font-size: 14px;
   list-style: disc;
-}
-
-.section-product {
-  display: flex;
-  justify-content: center;
 }
 
 /* ===== Main ===== */
