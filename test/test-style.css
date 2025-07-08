@@ -200,10 +200,6 @@ body {
   border-radius: 3px;
 }
 
-.product {
-  margin-top: 20px;
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .wrap__content {
