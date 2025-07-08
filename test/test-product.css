@@ -38,7 +38,7 @@
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .size {
@@ -154,14 +154,14 @@
 .buy-btn {
   display: flex;
   align-items: end;
-  justify-content: end;
+  justify-content: space-evenly;
   margin-top: auto;
   text-decoration: none;
 }
 
 .buy-btn button {
   background: linear-gradient(#ffe600, #ff6600) scroll;
-  padding: 10px;
+  padding: 10px 20px;
   border: none;
   color: #ffffff;
   font-weight: bold;
