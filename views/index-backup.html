@@ -13,63 +13,113 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/index.css" />
-    <link rel="stylesheet" href="/css/buy.css" />
+    <link rel="stylesheet" href="/css/product.css" />
   </head>
   <body>
+    <!-- 🔴 Navbar -->
     <header class="site-header">
       <div class="inside-header">
-        <div class="container">
-          <div class="cell-1">
-            <!-- Logo -->
-            <div class="logo">
-              <a href="">
-                <img src="" alt="" srcset="" />
-              </a>
+        <div class="header-container">
+          <div class="header-top">
+            <div class="logo">Logo</div>
+            <div class="search-box">
+              <input type="text" placeholder="Tìm kiếm..." />
+              <button>🔍</button>
             </div>
-            <!-- Searcj -->
-            <div class="search">
-              <input type="search" name="" id="" />
+            <div class="contact-icons">
+              <span>📞 038.796.4768</span>
+              <div class="socials">
+                <a href="#">🌐</a>
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">🎵</a>
+              </div>
             </div>
-          </div>
-          <div class="cell-2">
-            <!-- SDT - Header -->
-            <div class="phone">
-              <p class="header-phone">038.796.4758</p>
-            </div>
-            <!-- Liên hệ với chúng tôi: -->
-            <div class="contact">
-              <p class="header-contact">Liên hệ với chúng tôi:</p>
-              <!-- icon mxh -->
-            </div>
-            <!-- Giỏ hàng -->
-            <div class="cart">
-              <!-- Icon giỏ hàng -->
-              <p>Giỏ hàng</p>
-            </div>
+            <button class="cart-btn">🛒 Giỏ hàng</button>
           </div>
         </div>
       </div>
       <div class="bottom-header">
-        <div class="container">
-          <div class="cell-1"></div>
-          <div class="cell-2"></div>
+        <div class="header-container">
+          <nav class="nav-links">
+            <a href="#">Giới thiệu</a>
+            <a href="#">Chính sách bảo hành</a>
+            <a href="#">Liên hệ hợp tác</a>
+            <a href="#">Vận chuyển</a>
+          </nav>
         </div>
       </div>
     </header>
 
-    <main class="container">
-      <section id="productList" class="product-grid">
-        <!-- Sản phẩm sẽ được render tại đây -->
-      </section>
-    </main>
+    <div class="site-content">
+      <div class="content-top">
+        <!-- 🔴 Content Wrapper -->
+        <div class="container">
+          <!-- Sidebar -->
+          <aside class="sidebar">
+            <h3>Danh sách sản phẩm</h3>
+            <div class="category">
+              <p>1. Ghế ▼</p>
+              <ul>
+                <li>Ghế lưng cao</li>
+                <li>Ghế lưng thấp</li>
+                <li>Ghế cafe inox</li>
+                <li>Ghế cafe lưới</li>
+              </ul>
+            </div>
+            <div class="category">
+              <p>2. Bàn ▼</p>
+              <ul>
+                <li>Bàn tròn</li>
+                <li>Bàn vuông</li>
+              </ul>
+            </div>
+            <div class="category">
+              <p>3. Combo ▼</p>
+              <ul>
+                <li>Bộ 1 bàn + 2 ghế</li>
+                <li>Bộ 1 bàn + 4 ghế</li>
+                <li>Bộ 1 bàn + 6 ghế</li>
+                <li>Bộ 2 bàn + 6 ghế</li>
+                <li>Bộ 2 bàn + 8 ghế</li>
+              </ul>
+            </div>
+          </aside>
 
-    <footer class="site-footer">
-      <div class="container">
-        <p>&copy; 2025 Trang bán hàng của bạn. All rights reserved.</p>
+          <!-- Banner -->
+          <div class="banner">
+            <div class="banner-top img">
+              <a href="">
+                <img src="" alt="" srcset="" />
+                Banner 1
+              </a>
+            </div>
+            <div class="sub-banners">
+              <div class="sub-banners-1">
+                <a href="">
+                  <img src="" alt="" srcset="" />
+                  Banner 2
+                </a>
+              </div>
+              <div class="sub-banners-2">
+                <a href="">
+                  <img src="" alt="" srcset="" />
+                  Banner 3
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
-
-    <!-- Script hiển thị sản phẩm -->
+      <section class="section-product">
+        <!-- Main Content -->
+        <main class="container">
+          <section id="productList" class="product-grid">
+            <!-- Sản phẩm sẽ được render tại đây -->
+          </section>
+        </main>
+      </section>
+    </div>
     <script src="/js/renderProductsBuyStyle.js"></script>
   </body>
 </html>

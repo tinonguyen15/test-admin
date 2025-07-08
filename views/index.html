@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Trang Bán Hàng</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
@@ -12,114 +11,129 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/index.css" />
     <link rel="stylesheet" href="/css/product.css" />
   </head>
   <body>
-    <!-- 🔴 Navbar -->
     <header class="site-header">
       <div class="inside-header">
-        <div class="header-container">
+        <div class="header wrap__content">
           <div class="header-top">
-            <div class="logo">Logo</div>
-            <div class="search-box">
-              <input type="text" placeholder="Tìm kiếm..." />
-              <button>🔍</button>
-            </div>
-            <div class="contact-icons">
-              <span>📞 038.796.4768</span>
-              <div class="socials">
-                <a href="#">🌐</a>
-                <a href="#">📘</a>
-                <a href="#">📸</a>
-                <a href="#">🎵</a>
+            <div class="cell-1">
+              <div class="logo">
+                <a href="">
+                  <img
+                    src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/515281674_122114421290911663_1479972533960194437_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHg2rImvNdqf3VlYOYwN5q4AM7IFBz4L1YAzsgUHPgvVr4tzqpK2Ukc87Gtb4-zXH8PW8VO4sAaM5c1XsVYeYXX&_nc_ohc=XTrlkuYM6JUQ7kNvwEYD9fe&_nc_oc=Adm6mVmEFzh13FaZLBsdHBvSrU2HrgvOy5-K1sCtsuJoDx-j_B89hy5eOv0tTbRuOY4&_nc_zt=23&_nc_ht=scontent.fsgn5-6.fna&_nc_gid=tUTQcCwna4_9mvmMpZXvIA&oh=00_AfQNYPUyFrqiq_h97AwQkV_01cK6m4YNsZRQqqyDXIoatw&oe=686F3680"
+                    alt=""
+                    srcset=""
+                  />
+                </a>
+              </div>
+              <div class="search">
+                <div class="search-box">
+                  <input type="text" placeholder="Tìm kiếm..." />
+                  <button>
+                    <span class="material-symbols-outlined"> search </span>
+                  </button>
+                </div>
               </div>
             </div>
-            <button class="cart-btn">🛒 Giỏ hàng</button>
+            <div class="cell-2">
+              <div class="contact">
+                <span><strong>📞Tư vấn: 038.796.4768</strong></span>
+                <div class="socials">
+                  <span> <strong>Liên hệ với chúng tôi: </strong></span>
+                  <div class="socials-icon">
+                    <a href="#">🌐</a>
+                    <a href="#">📘</a>
+                    <a href="#">📸</a>
+                    <a href="#">🎵</a>
+                  </div>
+                </div>
+              </div>
+              <button class="cart-btn">🛒 Giỏ hàng</button>
+            </div>
           </div>
         </div>
       </div>
+      <hr />
       <div class="bottom-header">
-        <div class="header-container">
-          <nav class="nav-links">
-            <a href="#">Giới thiệu</a>
-            <a href="#">Chính sách bảo hành</a>
-            <a href="#">Liên hệ hợp tác</a>
-            <a href="#">Vận chuyển</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <div class="site-content">
-      <div class="content-top">
-        <!-- 🔴 Content Wrapper -->
-        <div class="container">
-          <!-- Sidebar -->
-          <aside class="sidebar">
-            <h3>Danh sách sản phẩm</h3>
-            <div class="category">
-              <p>1. Ghế ▼</p>
-              <ul>
-                <li>Ghế lưng cao</li>
-                <li>Ghế lưng thấp</li>
-                <li>Ghế cafe inox</li>
-                <li>Ghế cafe lưới</li>
-              </ul>
-            </div>
-            <div class="category">
-              <p>2. Bàn ▼</p>
-              <ul>
-                <li>Bàn tròn</li>
-                <li>Bàn vuông</li>
-              </ul>
-            </div>
-            <div class="category">
-              <p>3. Combo ▼</p>
-              <ul>
-                <li>Bộ 1 bàn + 2 ghế</li>
-                <li>Bộ 1 bàn + 4 ghế</li>
-                <li>Bộ 1 bàn + 6 ghế</li>
-                <li>Bộ 2 bàn + 6 ghế</li>
-                <li>Bộ 2 bàn + 8 ghế</li>
-              </ul>
-            </div>
-          </aside>
-
-          <!-- Banner -->
-          <div class="banner">
-            <div class="banner-top img">
-              <a href="">
-                <img src="" alt="" srcset="" />
-                Banner 1
-              </a>
-            </div>
-            <div class="sub-banners">
-              <div class="sub-banners-1">
-                <a href="">
-                  <img src="" alt="" srcset="" />
-                  Banner 2
-                </a>
-              </div>
-              <div class="sub-banners-2">
-                <a href="">
-                  <img src="" alt="" srcset="" />
-                  Banner 3
-                </a>
-              </div>
-            </div>
+        <div class="header wrap__content">
+          <div class="bottom-header-container">
+            <nav class="nav-links">
+              <a href="#">Giới thiệu</a>
+              <a href="#">Bảo hành</a>
+              <a href="#">Hợp tác</a>
+              <a href="#">Vận chuyển</a>
+            </nav>
           </div>
         </div>
       </div>
-      <section class="section-product">
-        <!-- Main Content -->
-        <main class="container">
-          <section id="productList" class="product-grid">
-            <!-- Sản phẩm sẽ được render tại đây -->
-          </section>
-        </main>
-      </section>
-    </div>
+      <hr />
+    </header>
+    <section>
+      <!-- menu respon -->
+    </section>
+    <section>
+      <!-- ========== MAIN CONTAINER ========== -->
+      <div class="main wrap__content">
+        <div class="main-container">
+          <!-- ========== SIDEBAR ========== -->
+          <aside class="sidebar">
+            <div class="sidebar-title toggle-sidebar">
+              <div class="title-sidebar">
+                <i class="fa fa-bars"></i>
+                DANH MỤC SẢN PHẨM
+              </div>
+              <i class="fa-sharp fa-solid fa-chevron-right"></i>
+            </div>
+            <ul class="category-list">
+              <li>🪑 Nội thất</li>
+              <li>🏷️ Sản phẩm khuyến mãi</li>
+              <li>🔥 Bếp điện từ</li>
+              <li>🔐 Khóa điện tử</li>
+              <li>🛠️ Phụ kiện tủ bếp</li>
+              <li>🧊 Tủ lạnh</li>
+              <li>💨 Máy sấy chén bát</li>
+              <li>🚿 Máy rửa chén bát</li>
+              <li>🌬️ Máy hút mùi</li>
+              <li>🤖 Robot lau nhà</li>
+            </ul>
+          </aside>
+          <!-- Banner -->
+          <div class="banner-top">
+            <a href=""
+              ><img
+                src="https://noithattangiabang.com/wp-content/uploads/2022/08/TAN-GIA-BANG-DOWNLOAD-POSTER-CAFE-MIEN-PHI-848x480.jpg"
+                alt=""
+                srcset=""
+            /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <!-- Sản phẩm -->
+      <main class="container">
+        <section id="productList" class="product-grid">
+          <!-- Sản phẩm sẽ được render tại đây -->
+        </section>
+      </main>
+    </section>
+    <footer></footer>
+    <script src="/js/home.js"></script>
     <script src="/js/renderProductsBuyStyle.js"></script>
   </body>
 </html>
