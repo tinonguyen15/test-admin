@@ -185,9 +185,12 @@ async function loadProductsForUser() {
           <h3>${p.name}</h3>
           <p class="status"><strong>Trạng thái:</strong> ${statusText}</p>
           ${detailHTML}
+          <div class="bottom-product">
           <a href="${linkToMessenger}" target="_blank" class="buy-btn">
-            <button><i class="fas fa-cart-plus"></i> Mua ngay</button>
+          <button><i class="fas fa-cart-plus"></i></button>
+            <button> Mua ngay</button>
           </a>
+          </div>
         </div>
       `;
 
