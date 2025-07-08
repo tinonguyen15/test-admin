@@ -88,24 +88,25 @@
 }
 
 .product-card .status {
+  display: flex;
   font-size: 14px;
   font-style: italic;
   margin-bottom: 10px;
   text-align: left;
 }
 
-.status.available {
+.status.con-hang {
   color: green;
   font-weight: bold;
 }
 
-.status.soldout {
+.status.het-hang {
   color: red;
   font-weight: bold;
 }
 
-.status.upcoming {
-  color: #999;
+.status.sap-ra-mat {
+  color: #00a5e2;
   font-weight: bold;
 }
 

@@ -184,9 +184,10 @@ async function loadProductsForUser() {
         <div class="product-card" id="product-card-${index}">
           <img src="${imageSrc}" alt="${p.name}" class="product-image" />
           <h3 class="name-product">${p.name}</h3>
-<p class="status ${p.status}">
-  <strong>Trạng thái:</strong> ${statusText}
-</p>
+          <div class="status">
+            <p class="status-content"> <strong>Trạng thái:</strong> </p>
+            <p class="status ${p.status}"> ${statusText}</p>
+          </div>
           ${detailHTML}
           <div class="bottom-product">
           <a href="${linkToMessenger}" target="_blank" class="buy-btn">
