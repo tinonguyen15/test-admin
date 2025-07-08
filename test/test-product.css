@@ -87,12 +87,11 @@
   margin: 8px 0;
 }
 
-.product-card .status {
+.status {
   display: flex;
-  font-size: 14px;
   font-style: italic;
   margin-bottom: 10px;
-  text-align: left;
+  gap: 6px;
 }
 
 .status.con-hang {
