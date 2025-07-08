@@ -22,8 +22,8 @@
     />
 
     <title>Document</title>
-    <link rel="stylesheet" href="test-style.css" />
-    <link rel="stylesheet" href="test-product.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/product.css" />
   </head>
   <body>
     <header class="site-header">
@@ -42,7 +42,7 @@
               </div>
               <div class="search">
                 <div class="search-box">
-                  <input type="text" placeholder="Bạn cần tìm gì..." />
+                  <input type="text" placeholder="Tìm kiếm..." />
                   <button>
                     <span class="material-symbols-outlined"> search </span>
                   </button>
@@ -131,12 +131,16 @@
             <span>Danh sách sản phẩm</span>
           </div>
           <!-- Sản phẩm -->
-          <main class="product-container"></main>
+          <main class="product-container">
+            <section id="productList" class="product-grid">
+              <!-- Sản phẩm sẽ được render tại đây -->
+            </section>
+          </main>
         </div>
       </div>
     </section>
     <footer></footer>
-    <script src="test-home.js"></script>
+    <script src="/js/home.js"></script>
     <script src="/js/renderProductsBuyStyle.js"></script>
   </body>
 </html>
