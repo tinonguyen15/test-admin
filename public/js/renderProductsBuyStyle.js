@@ -182,7 +182,7 @@ async function loadProductsForUser() {
       const item = `
         <div class="product-card" id="product-card-${index}">
           <img src="${imageSrc}" alt="${p.name}" class="product-image" />
-          <h3>${p.name}</h3>
+          <h3 class="name-product">${p.name}</h3>
           <p class="status"><strong>Trạng thái:</strong> ${statusText}</p>
           ${detailHTML}
           <div class="bottom-product">
