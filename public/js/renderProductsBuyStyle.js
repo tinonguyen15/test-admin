@@ -1,3 +1,4 @@
+// renderProductsBuyStyle.js
 const STATUS_LABELS = {
   "con-hang": "Đang bán",
   "het-hang": "Hết hàng",
@@ -68,7 +69,7 @@ function selectDigitalOption(index, durationIndex) {
     .join("");
 
   const price = deviceList[0].price.toLocaleString();
-  document.getElementById(priceId).innerText = `Giá: ${price}₫`;
+  document.getElementById(priceId).innerText = `Giá: ${price} ₫`;
 }
 
 // ===== TẢI TOÀN BỘ SẢN PHẨM =====
@@ -183,7 +184,9 @@ async function loadProductsForUser() {
         <div class="product-card" id="product-card-${index}">
           <img src="${imageSrc}" alt="${p.name}" class="product-image" />
           <h3 class="name-product">${p.name}</h3>
-          <p class="status"><strong>Trạng thái:</strong> ${statusText}</p>
+<p class="status ${p.status}">
+  <strong>Trạng thái:</strong> ${statusText}
+</p>
           ${detailHTML}
           <div class="bottom-product">
           <a href="${linkToMessenger}" target="_blank" class="buy-btn">
