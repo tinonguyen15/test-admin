@@ -24,7 +24,7 @@
 ============================ */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 20px;
 }
 
@@ -81,7 +81,7 @@
   text-overflow: ellipsis;
   line-height: 1.4; /* Điều chỉnh khoảng cách dòng nếu cần */
   max-height: calc(1.4em * 2); /* Đảm bảo chiều cao tương ứng với 2 dòng */
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #333;
   margin: 8px 0;
