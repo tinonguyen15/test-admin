@@ -8,6 +8,7 @@
 
 body {
   background: #f0f0f0;
+  gap: 10px;
 }
 
 .wrap__content {
@@ -199,6 +200,10 @@ body {
   height: 100%;
   display: block;
   border-radius: 3px;
+}
+
+.product-container {
+  margin-top: 20px;
 }
 
 /* ===== Responsive ===== */
