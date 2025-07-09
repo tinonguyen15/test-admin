@@ -1,0 +1,10 @@
+#setting-section form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 12px;
+  padding: 10px;
+}
+#setting-section form input {
+  width: 100%;
+}

@@ -57,6 +57,24 @@
         </div>
       </section>
 
+      <!-- Cài đặt chung -->
+      <section id="setting-section" class="section">
+        <h2>Cài đặt giao diện</h2>
+        <form
+          id="configForm"
+          enctype="multipart/form-data"
+          method="POST"
+          action="/api/site-config"
+        >
+          <label>Logo: <input type="file" name="logo" /></label><br />
+          <label>Banner: <input type="file" name="banner" /></label><br />
+          <label>Hotline: <input type="text" name="hotline" /></label><br />
+          <label>Facebook: <input type="url" name="facebook" /></label><br />
+          <label>TikTok: <input type="url" name="tiktok" /></label><br />
+          <button type="submit">Lưu</button>
+        </form>
+      </section>
+
       <!-- Sản phẩm thường -->
       <section id="physical-section" class="section">
         <h2>Sản phẩm thường</h2>
@@ -240,6 +258,21 @@
       menuToggle.addEventListener("click", (e) => {
         e.stopPropagation(); // tránh kích hoạt sự kiện click ngoài
         toggleMenu();
+      });
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".tab-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelectorAll(".section")
+            .forEach((s) => s.classList.remove("active"));
+
+          btn.classList.add("active");
+          const target = btn.getAttribute("data-target");
+          document.getElementById(target)?.classList.add("active");
+        });
       });
     </script>
 
