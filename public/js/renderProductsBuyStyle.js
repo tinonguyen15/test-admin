@@ -1,6 +1,6 @@
 // renderProductsBuyStyle.js
 const STATUS_LABELS = {
-  "con-hang": "Đang bán",
+  "con-hang": "Còn hàng",
   "het-hang": "Hết hàng",
   "sap-ra-mat": "Sắp ra mắt",
 };

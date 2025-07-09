@@ -2,7 +2,7 @@
 import { handleEditClick, handleDeleteClick } from "./productActions.js";
 
 const STATUS_LABELS = {
-  "con-hang": "Đang bán",
+  "con-hang": "Còn hàng",
   "het-hang": "Hết hàng",
   "sap-ra-mat": "Sắp ra mắt",
 };
@@ -140,7 +140,7 @@ function renderStatusChart(counts) {
   statusChartInstance = new Chart(ctx, {
     type: "pie",
     data: {
-      labels: ["Đang bán", "Hết hàng", "Sắp ra mắt"],
+      labels: ["Còn hàng", "Hết hàng", "Sắp ra mắt"],
       datasets: [
         {
           label: "Số lượng",
