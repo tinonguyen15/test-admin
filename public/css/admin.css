@@ -8,3 +8,165 @@
 #setting-section form input {
   width: 100%;
 }
+
+/* upload logo */
+.image-upload-wrapper {
+  margin-bottom: 12px;
+}
+
+.image-upload-wrapper button {
+  padding: 6px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.image-upload-wrapper img {
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  border-radius: 4px;
+}
+
+.add-product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image-upload-product {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-upload-product img {
+  border: rgb(103, 103, 103) 1px solid;
+  border-radius: 4px;
+}
+
+.btn-upload-image-product {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.name-status {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.name-status label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.name-status input,
+.name-status select {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.variant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.variant {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.variant input[type="text"],
+.variant input[type="number"],
+.variant input[type="file"] {
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.variant input[type="text"],
+.variant input[type="number"] {
+  width: 120px;
+}
+
+.variant input[type="file"] {
+  flex-shrink: 0;
+}
+
+.variant button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.variant button:hover {
+  background-color: #d9363e;
+}
+
+/* Biến thể cho sản phẩm */
+.variant-group {
+  margin-top: 10px;
+}
+
+.variant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.variant input[type="text"],
+.variant input[type="number"] {
+  width: 120px;
+  padding: 6px;
+}
+
+.variant .image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.variant .selectImageBtn {
+  padding: 6px 10px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.variant img.variant-preview {
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.variant button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

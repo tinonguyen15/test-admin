@@ -1,4 +1,5 @@
-const SiteConfig = require("../../models/SiteConfig");
+// siteConfigController.js
+const SiteConfig = require("../models/SiteConfig");
 const fs = require("fs");
 const path = require("path");
 
@@ -20,28 +21,32 @@ exports.updateConfig = async (req, res) => {
     let config = await SiteConfig.findOne();
     if (!config) config = new SiteConfig();
 
-    // Xóa file cũ nếu có
+    // ✅ Cập nhật logo (và xoá ảnh cũ nếu có)
     if (logo) {
-      if (config.logo && fs.existsSync(config.logo)) {
-        fs.unlinkSync(config.logo);
+      if (config.logo && fs.existsSync(path.join("public", config.logo))) {
+        fs.unlinkSync(path.join("public", config.logo));
       }
-      config.logo = logo.path;
+      config.logo = `uploads/${logo.filename}`;
     }
 
+    // ✅ Cập nhật banner (và xoá ảnh cũ nếu có)
     if (banner) {
-      if (config.banner && fs.existsSync(config.banner)) {
-        fs.unlinkSync(config.banner);
+      if (config.banner && fs.existsSync(path.join("public", config.banner))) {
+        fs.unlinkSync(path.join("public", config.banner));
       }
-      config.banner = banner.path;
+      config.banner = `uploads/${banner.filename}`;
     }
 
-    config.hotline = hotline;
-    config.socialLinks = { facebook, tiktok };
+    config.hotline = hotline || "";
+    config.socialLinks = {
+      facebook: facebook || "",
+      tiktok: tiktok || "",
+    };
 
     await config.save();
-    res.json({ message: "Cập nhật thành công!" });
+    res.json({ message: "✅ Cập nhật cấu hình thành công" });
   } catch (err) {
-    console.error("Lỗi cập nhật cấu hình:", err);
-    res.status(500).json({ error: "Cập nhật thất bại." });
+    console.error("❌ Lỗi cập nhật site config:", err);
+    res.status(500).json({ error: "Lỗi khi cập nhật cấu hình." });
   }
 };

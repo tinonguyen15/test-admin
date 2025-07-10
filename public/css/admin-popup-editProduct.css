@@ -1,0 +1,162 @@
+/* 🧩 Overlay tối khi mở popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 📦 Form popup chính */
+.popup {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 95%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ❌ Nút đóng */
+.close-popup {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+}
+
+.popup-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+/* 🧾 Nhóm thông tin */
+.popup-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-input-file,
+.form-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* 🎨 Danh sách phân loại */
+#editOptions label {
+  font-weight: 600;
+  display: block;
+  margin: 12px 0 6px;
+}
+
+#editVariantGroupName {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+}
+
+/* 📦 Mỗi block phân loại */
+.variant-edit-block {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.edit-variant-size,
+.edit-variant-price,
+.edit-variant-image {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.edit-variant-size {
+  width: 30%;
+}
+
+.edit-variant-price {
+  width: 30%;
+}
+
+.edit-variant-image {
+  width: 30%;
+}
+
+.variant-edit-block button {
+  background: #dc3545;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#addEditVariant {
+  margin-top: 12px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 🎯 Nút dưới cùng */
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #e2e6ea;
+  color: #333;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #0069d9;
+}
+
+.btn-secondary:hover {
+  background: #d6d8db;
+}

@@ -87,7 +87,9 @@ async function loadProductsForUser() {
       let detailHTML = "";
 
       if (p.type === "physical" && p.variants?.length) {
-        const groupName = `size-${index}`;
+        const groupName = `variant-${index}`;
+        const groupLabel = p.variantGroup || "Phân loại";
+
         const sizeButtons = p.variants
           .map(
             (v, i) => `
@@ -105,7 +107,7 @@ async function loadProductsForUser() {
         detailHTML = `
           <div class="product-details">
             <div class="size">
-              <strong>Size:</strong>
+              <strong>${groupLabel}:</strong>
               <div class="size-options" id="${groupName}">
                 ${sizeButtons}
               </div>
@@ -182,18 +184,18 @@ async function loadProductsForUser() {
 
       const item = `
         <div class="product-card" id="product-card-${index}">
-          <img src="${imageSrc}" alt="${p.name}" class="product-image" />
+          <img src="/${imageSrc}" alt="${p.name}" class="product-image" />
           <h3 class="name-product">${p.name}</h3>
           <div class="status">
-            <p class="status-content"> <strong>Trạng thái:</strong> </p>
-            <p class="status ${p.status}"> ${statusText}</p>
+            <p class="status-content"><strong>Trạng thái:</strong></p>
+            <p class="status ${p.status}">${statusText}</p>
           </div>
           ${detailHTML}
           <div class="bottom-product">
-          <a href="${linkToMessenger}" target="_blank" class="buy-btn">
-          <button><i class="fas fa-cart-plus"></i></button>
-            <button> Mua ngay</button>
-          </a>
+            <a href="${linkToMessenger}" target="_blank" class="buy-btn">
+              <button><i class="fas fa-cart-plus"></i></button>
+              <button>Mua ngay</button>
+            </a>
           </div>
         </div>
       `;

@@ -1,3 +1,4 @@
+// Product.js
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
@@ -11,6 +12,7 @@ const productSchema = new mongoose.Schema(
       enum: ["physical", "digital"],
       required: true,
     },
+    variantGroup: { type: String, default: "Phân loại" }, // ✅ Thêm dòng này
     variants: Array,
     plans: Array,
     status: {

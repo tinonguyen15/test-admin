@@ -1,3 +1,6 @@
+// public/js/home.js
+import { renderSiteConfig } from "./renderSiteConfig.js";
+
 // ===== Highlight khi click vào danh mục sản phẩm =====
 const categoryItems = document.querySelectorAll(".category-list li");
 categoryItems.forEach((item) => {
@@ -26,4 +29,12 @@ toggleBtn.addEventListener("click", () => {
     categoryList.classList.toggle("show");
     arrowIcon.classList.toggle("rotate");
   }
+});
+
+// ===== Load cấu hình logo/banner/hotline/mxh =====
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/api/site-config")
+    .then((res) => res.json())
+    .then((data) => renderSiteConfig(data))
+    .catch((err) => console.error("Lỗi khi tải cấu hình:", err));
 });

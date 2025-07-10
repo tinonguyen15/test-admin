@@ -1,19 +1,13 @@
+// siteConfigRoutes.js
 const express = require("express");
 const router = express.Router();
 const siteConfigController = require("../controllers/siteConfigController");
-const multer = require("multer");
-const path = require("path");
+const upload = require("../middlewares/upload"); // ✅ dùng middleware chuẩn
 
-// Cấu hình Multer lưu ảnh
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "public/images"),
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname)),
-});
-const upload = multer({ storage });
-
+// Lấy cấu hình site
 router.get("/", siteConfigController.getConfig);
 
+// Cập nhật cấu hình (logo + banner)
 router.post(
   "/",
   upload.fields([

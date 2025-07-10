@@ -8,11 +8,19 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- CropperJS -->
+    <link
+      href="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="/css/admin.css" />
+    <link rel="stylesheet" href="/css/admin-popup-editProduct.css" />
     <link rel="stylesheet" href="/css/admin.responsive.css" />
   </head>
   <body>
@@ -66,41 +74,146 @@
           method="POST"
           action="/api/site-config"
         >
-          <label>Logo: <input type="file" name="logo" /></label><br />
-          <label>Banner: <input type="file" name="banner" /></label><br />
-          <label>Hotline: <input type="text" name="hotline" /></label><br />
-          <label>Facebook: <input type="url" name="facebook" /></label><br />
-          <label>TikTok: <input type="url" name="tiktok" /></label><br />
+          <!-- Logo -->
+          <label>Logo:</label>
+          <div class="image-upload-wrapper">
+            <button
+              type="button"
+              class="selectImageBtn"
+              data-target="logoInput"
+            >
+              📤 Chọn ảnh
+            </button>
+            <input
+              type="file"
+              id="logoInput"
+              name="logo"
+              accept="image/*"
+              style="display: none"
+            />
+            <img
+              id="logoPreview"
+              style="max-width: 200px; display: none; margin-top: 8px"
+            />
+          </div>
+
+          <!-- Banner -->
+          <label>Banner:</label>
+          <div class="image-upload-wrapper">
+            <button
+              type="button"
+              class="selectImageBtn"
+              data-target="bannerInput"
+            >
+              📤 Chọn ảnh
+            </button>
+            <input
+              type="file"
+              id="bannerInput"
+              name="banner"
+              accept="image/*"
+              style="display: none"
+            />
+            <img
+              id="bannerPreview"
+              style="max-width: 100%; display: none; margin-top: 8px"
+            />
+          </div>
+
+          <label
+            >Hotline:
+            <input
+              type="text"
+              name="hotline"
+              placeholder="Nhập số điện thoại" /></label
+          ><br />
+          <label
+            >Facebook:
+            <input
+              type="url"
+              name="facebook"
+              placeholder="Nhập Link Page Facebook" /></label
+          ><br />
+          <label
+            >TikTok:
+            <input
+              type="url"
+              name="tiktok"
+              placeholder="Nhập Link kênh Tiktok" /></label
+          ><br />
           <button type="submit">Lưu</button>
         </form>
       </section>
 
       <!-- Sản phẩm thường -->
       <section id="physical-section" class="section">
-        <h2>Sản phẩm thường</h2>
-        <button id="showPhysicalForm" class="add-btn">➕ Thêm sản phẩm</button>
+        <div class="add-product">
+          <h2>Sản phẩm thường</h2>
+          <button id="showPhysicalForm" class="add-btn">
+            ➕ Thêm sản phẩm
+          </button>
+        </div>
 
         <div id="physicalFormContainer" style="display: none">
           <form id="physical-form" enctype="multipart/form-data">
-            <label
-              >Tên sản phẩm:
-              <input type="text" name="name" required />
-            </label>
-            <label
-              >Ảnh:
-              <input type="file" name="image" accept="image/*" required />
-            </label>
-            <label
-              >Trạng thái:
-              <select name="status" required>
-                <option value="con-hang">Còn hàng</option>
-                <option value="het-hang">Hết hàng</option>
-                <option value="sap-ra-mat">Sắp ra mắt</option>
-              </select>
-            </label>
+            <label>Ảnh chính cho sản phẩm:</label>
+            <div class="image-upload-product">
+              <div class="btn-upload-image-product">
+                <button
+                  type="button"
+                  class="selectImageBtn"
+                  data-target="physicalImageInput"
+                >
+                  📤 Chọn ảnh
+                </button>
+                <input
+                  type="file"
+                  id="physicalImageInput"
+                  name="image"
+                  accept="image/*"
+                  style="display: none"
+                  required
+                />
+              </div>
+              <img
+                id="physicalImagePreview"
+                style="max-width: 200px; display: none; margin-top: 8px"
+              />
+            </div>
 
-            <div id="variantList" class="variant-list"></div>
-            <button type="button" id="addVariant">+ Thêm phân loại</button>
+            <div class="name-status">
+              <label
+                >Tên sản phẩm:
+                <input type="text" name="name" required />
+              </label>
+
+              <label
+                >Trạng thái:
+                <select name="status" required>
+                  <option value="con-hang">Còn hàng</option>
+                  <option value="het-hang">Hết hàng</option>
+                  <option value="sap-ra-mat">Sắp ra mắt</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="variant-group">
+              <label>
+                Tên biến thể:
+                <input
+                  type="text"
+                  id="variantGroupName"
+                  name="variantGroup"
+                  placeholder="VD: Size, Màu..."
+                  required
+                />
+              </label>
+
+              <div id="variantList" class="variant-list"></div>
+
+              <button type="button" id="addVariant">+ Thêm biến thể</button>
+            </div>
+
             <button type="submit">
               <i class="fas fa-plus-circle"></i> Xong
             </button>
@@ -127,19 +240,43 @@
 
       <!-- Sản phẩm mở rộng -->
       <section id="digital-section" class="section">
-        <h2>Sản phẩm mở rộng</h2>
-        <button id="showDigitalForm" class="add-btn">➕ Thêm sản phẩm</button>
+        <div class="add-product">
+          <h2>Sản phẩm mở rộng</h2>
+          <button id="showDigitalForm" class="add-btn">➕ Thêm sản phẩm</button>
+        </div>
 
         <div id="digitalFormContainer" style="display: none">
           <form id="digital-form" enctype="multipart/form-data">
+            <label>Ảnh chính cho sản phẩm:</label>
+            <div class="image-upload-product">
+              <div class="btn-upload-image-product">
+                <button
+                  type="button"
+                  class="selectImageBtn"
+                  data-target="digitalImageInput"
+                >
+                  📤 Chọn ảnh
+                </button>
+                <input
+                  type="file"
+                  id="digitalImageInput"
+                  name="image"
+                  accept="image/*"
+                  style="display: none"
+                  required
+                />
+              </div>
+              <img
+                id="digitalImagePreview"
+                style="max-width: 200px; display: none; margin-top: 8px"
+              />
+            </div>
+
             <label
               >Tên sản phẩm:
               <input type="text" name="name" required />
             </label>
-            <label
-              >Ảnh:
-              <input type="file" name="image" accept="image/*" required />
-            </label>
+
             <label
               >Trạng thái:
               <select name="status" required>
@@ -176,46 +313,95 @@
       </section>
     </main>
 
-    <!-- Popup chỉnh sửa giữ nguyên -->
+    <!-- 📦 Popup chỉnh sửa sản phẩm -->
     <div class="popup-overlay" id="editPopup">
       <form class="popup" onsubmit="event.preventDefault(); saveEdit()">
+        <!-- ✖️ Nút đóng popup -->
         <span class="close-popup" onclick="closePopup()">&times;</span>
-        <h3>Chỉnh sửa sản phẩm</h3>
+        <h3 class="popup-title">Chỉnh sửa sản phẩm</h3>
 
-        <label
-          >STT:
-          <input type="number" id="editStt" />
-        </label>
-        <label
-          >Tên sản phẩm:
-          <input type="text" id="editName" />
-        </label>
-        <label
-          >Ảnh:
-          <input type="file" id="editImage" />
-        </label>
-        <label for="editStatus">Trạng thái:</label>
-        <select id="editStatus">
-          <option value="con-hang">Còn hàng</option>
-          <option value="het-hang">Hết hàng</option>
-          <option value="sap-ra-mat">Sắp ra mắt</option>
-        </select>
+        <!-- 🧩 Thông tin chung -->
+        <div class="popup-group group-general">
+          <label class="form-label">
+            STT:
+            <input type="number" id="editStt" class="form-input" />
+          </label>
 
-        <div id="editOptions">
-          <label>Phân loại:</label>
-          <div id="editVariantList" class="space-y-2"></div>
-          <button
-            id="addEditVariant"
-            type="button"
-            class="px-2 py-1 bg-green-600 text-white rounded mt-2"
-          >
+          <label class="form-label">
+            Tên sản phẩm:
+            <input type="text" id="editName" class="form-input" />
+          </label>
+
+          <!-- Ảnh sản phẩm -->
+          <label class="form-label">
+            Ảnh:
+            <div class="image-upload-product">
+              <div class="btn-upload-image-product">
+                <button
+                  type="button"
+                  class="selectImageBtn"
+                  data-target="editImage"
+                >
+                  📤 Chọn ảnh
+                </button>
+                <input
+                  type="file"
+                  id="editImage"
+                  class="form-input-file"
+                  name="image"
+                  accept="image/*"
+                  style="display: none"
+                />
+              </div>
+              <img
+                id="editImagePreview"
+                style="
+                  max-width: 200px;
+                  display: none;
+                  margin-top: 8px;
+                  border-radius: 8px;
+                "
+              />
+            </div>
+          </label>
+
+          <label class="form-label">
+            Trạng thái:
+            <select id="editStatus" class="form-select">
+              <option value="con-hang">Còn hàng</option>
+              <option value="het-hang">Hết hàng</option>
+              <option value="sap-ra-mat">Sắp ra mắt</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- 📦 Nếu là sản phẩm vật lý -->
+        <div id="editOptions" class="popup-group group-variants">
+          <label class="form-label">
+            Tên nhóm phân loại:
+            <input
+              type="text"
+              id="editVariantGroupName"
+              class="form-input"
+              placeholder="VD: Size, Màu..."
+            />
+          </label>
+
+          <div id="editVariantList" class="variant-list space-y-2"></div>
+
+          <button id="addEditVariant" type="button" class="add-variant-btn">
             ➕ Thêm phân loại
           </button>
         </div>
 
+        <!-- ✅ Nút hành động -->
         <div class="popup-buttons">
-          <button type="submit" class="save">Lưu</button>
-          <button type="button" class="cancel" onclick="closePopup()">
+          <button type="submit" class="save btn-primary">Lưu</button>
+          <button
+            type="button"
+            class="cancel btn-secondary"
+            onclick="closePopup()"
+          >
             Hủy
           </button>
         </div>
@@ -225,58 +411,10 @@
     <!-- Nút 3 gạch mở menu -->
     <button id="menuToggle"><i class="fas fa-bars"></i></button>
 
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const sidebar = document.querySelector("aside");
-      const icon = menuToggle.querySelector("i");
-
-      function toggleMenu() {
-        sidebar.classList.toggle("open");
-        menuToggle.classList.toggle("open");
-
-        if (sidebar.classList.contains("open")) {
-          icon.classList.remove("fa-bars");
-          icon.classList.add("fa-times");
-          document.addEventListener("click", handleOutsideClick);
-        } else {
-          icon.classList.remove("fa-times");
-          icon.classList.add("fa-bars");
-          document.removeEventListener("click", handleOutsideClick);
-        }
-      }
-
-      function handleOutsideClick(e) {
-        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
-          sidebar.classList.remove("open");
-          menuToggle.classList.remove("open");
-          icon.classList.remove("fa-times");
-          icon.classList.add("fa-bars");
-          document.removeEventListener("click", handleOutsideClick);
-        }
-      }
-
-      menuToggle.addEventListener("click", (e) => {
-        e.stopPropagation(); // tránh kích hoạt sự kiện click ngoài
-        toggleMenu();
-      });
-
-      document.querySelectorAll(".tab-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          document
-            .querySelectorAll(".tab-btn")
-            .forEach((b) => b.classList.remove("active"));
-          document
-            .querySelectorAll(".section")
-            .forEach((s) => s.classList.remove("active"));
-
-          btn.classList.add("active");
-          const target = btn.getAttribute("data-target");
-          document.getElementById(target)?.classList.add("active");
-        });
-      });
-    </script>
-
     <!-- Script chính khởi tạo -->
     <script type="module" src="/js/admin/admin.js"></script>
+    <script src="/js/admin/sidebar.js"></script>
+    <script src="/js/admin/tabs.js"></script>
+    <script src="/js/admin/imagePreview.js"></script>
   </body>
 </html>

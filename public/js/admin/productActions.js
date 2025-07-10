@@ -1,4 +1,4 @@
-// 📄 productActions.js
+// productActions.js
 import { loadProducts } from "./render.js";
 
 let currentEditingId = null;
@@ -19,56 +19,69 @@ window.saveEdit = async () => {
   const stt = document.getElementById("editStt").value.trim();
   const status = document.getElementById("editStatus").value;
   const image = document.getElementById("editImage").files[0];
+  const formData = new FormData();
 
   if (!name || !stt) {
     alert("⚠️ Vui lòng nhập đầy đủ tên và STT.");
     return;
   }
 
-  const formData = new FormData();
   formData.append("name", name);
   formData.append("stt", stt);
   formData.append("status", status);
   if (image) formData.append("image", image);
 
   if (currentEditingProduct.type === "physical") {
+    const variantGroupName = document
+      .getElementById("editVariantGroupName")
+      ?.value.trim();
+
     const sizeInputs = document.querySelectorAll(".edit-variant-size");
     const priceInputs = document.querySelectorAll(".edit-variant-price");
     const imageInputs = document.querySelectorAll(".edit-variant-image");
 
+    if (!variantGroupName) {
+      alert("⚠️ Vui lòng nhập tên nhóm biến thể (VD: Size, Màu...)");
+      return;
+    }
+
     const variants = [];
     const variantImageIndexes = [];
+
     for (let i = 0; i < sizeInputs.length; i++) {
       const size = sizeInputs[i].value.trim();
       const priceStr = priceInputs[i].value.trim();
       const imgInput = imageInputs[i];
 
-      if (!priceStr || isNaN(priceStr)) {
+      if (!priceStr || isNaN(priceStr) || Number(priceStr) < 0) {
         alert("⚠️ Giá phải là số dương.");
         priceInputs[i].focus();
         return;
       }
 
-      const variant = { size, price: parseInt(priceStr) };
+      const variant = {
+        size,
+        price: parseInt(priceStr),
+      };
 
       if (imgInput?.files?.length) {
-        formData.append("variantImages", imgInput.files[0]); // push ảnh
-        variantImageIndexes.push(i); // ghi nhận index
+        formData.append("variantImages", imgInput.files[0]);
+        variantImageIndexes.push(i);
       }
 
       variants.push(variant);
     }
 
     if (variants.length === 0) {
-      alert("⚠️ Cần ít nhất một biến thể sản phẩm.");
+      alert("⚠️ Cần ít nhất một biến thể.");
       return;
     }
 
+    formData.append("variantGroup", variantGroupName);
     formData.append("variants", JSON.stringify(variants));
     formData.append("variantImageIndexes", JSON.stringify(variantImageIndexes));
     formData.append("type", "physical");
   } else {
-    // sản phẩm digital
     const planBlocks = document.querySelectorAll(".plan-block");
     const plans = [];
 
@@ -129,11 +142,24 @@ export async function handleEditClick(e) {
   document.getElementById("editStatus").value = product.status || "con-hang";
   document.getElementById("editImage").value = "";
 
+  const preview = document.getElementById("editImagePreview");
+  if (product.image) {
+    preview.src = "/" + product.image;
+    preview.style.display = "block";
+  } else {
+    preview.style.display = "none";
+  }
+
   const optionsArea = document.getElementById("editOptions");
   optionsArea.innerHTML = "";
 
   if (product.type === "physical") {
     optionsArea.innerHTML = `
+      <label>Tên nhóm biến thể:</label>
+      <input type="text" id="editVariantGroupName" value="${
+        product.variantGroup || ""
+      }" />
+
       <label>Phân loại:</label>
       <div id="editVariantList"></div>
       <button id="addEditVariant" type="button">+ Thêm phân loại</button>
@@ -144,26 +170,77 @@ export async function handleEditClick(e) {
       const div = document.createElement("div");
       div.className = "variant-edit-block";
       div.innerHTML = `
-    <input type="text" class="edit-variant-size" value="${v.size}" />
-    <input type="number" class="edit-variant-price" value="${v.price}" />
-    <input type="file" class="edit-variant-image" accept="image/*" />
-    ${
-      v.image
-        ? `<img src="/${v.image}" width="40" class="preview-variant-image" />`
-        : ""
-    }
-    <button type="button" onclick="this.parentElement.remove()">❌</button>
-  `;
+        <input type="text" class="edit-variant-size" value="${v.size}" />
+        <input type="number" class="edit-variant-price" value="${v.price}" />
+
+        <div class="image-upload-product">
+          <div class="btn-upload-image-product">
+            <button type="button" class="selectImageBtn" data-target="variantImageInput-${i}">📤 Chọn ảnh</button>
+            <input type="file" class="edit-variant-image" id="variantImageInput-${i}" accept="image/*" style="display: none;">
+          </div>
+          <img src="/${
+            v.image || ""
+          }" class="preview-edit-variant-image" style="max-width: 80px; margin-top: 4px; ${
+        v.image ? "display: block;" : "display: none;"
+      }" />
+        </div>
+
+        <button type="button" onclick="this.parentElement.remove()">❌</button>
+      `;
+      const imageInput = div.querySelector(".edit-variant-image");
+      const previewImg = div.querySelector(".preview-edit-variant-image");
+      const selectBtn = div.querySelector(".selectImageBtn");
+
+      selectBtn.addEventListener("click", () => imageInput.click());
+      imageInput.addEventListener("change", () => {
+        const file = imageInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            previewImg.src = reader.result;
+            previewImg.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
       list.appendChild(div);
     });
 
+    // ✅ Thêm mới biến thể
     document.getElementById("addEditVariant").addEventListener("click", () => {
       const div = document.createElement("div");
+      const index = Date.now(); // Unique ID
+      div.className = "variant-edit-block";
       div.innerHTML = `
-        <input type="text" class="edit-variant-size" />
-        <input type="number" class="edit-variant-price" />
+        <input type="text" class="edit-variant-size" placeholder="Tên lựa chọn" />
+        <input type="number" class="edit-variant-price" placeholder="Giá" />
+        <div class="image-upload-product">
+          <div class="btn-upload-image-product">
+            <button type="button" class="selectImageBtn" data-target="variantImageInput-${index}">📤 Chọn ảnh</button>
+            <input type="file" class="edit-variant-image" id="variantImageInput-${index}" accept="image/*" style="display: none;">
+          </div>
+          <img class="preview-edit-variant-image" style="max-width: 80px; margin-top: 4px; display: none;" />
+        </div>
         <button type="button" onclick="this.parentElement.remove()">❌</button>
       `;
+      const imageInput = div.querySelector(".edit-variant-image");
+      const previewImg = div.querySelector(".preview-edit-variant-image");
+      const selectBtn = div.querySelector(".selectImageBtn");
+
+      selectBtn.addEventListener("click", () => imageInput.click());
+      imageInput.addEventListener("change", () => {
+        const file = imageInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            previewImg.src = reader.result;
+            previewImg.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
       document.getElementById("editVariantList").appendChild(div);
     });
   } else {
