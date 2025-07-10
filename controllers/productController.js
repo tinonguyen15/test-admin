@@ -70,7 +70,13 @@ exports.addProduct = async (req, res) => {
     // Sản phẩm số
     if (type === "digital" && plans) {
       const parsedPlans = JSON.parse(plans);
+      const planGroup = JSON.parse(req.body.planGroup || "{}");
+
       productData.plans = parsedPlans;
+      productData.planGroup = {
+        durationName: planGroup.durationName || "Thời hạn",
+        deviceName: planGroup.deviceName || "Thiết bị",
+      };
 
       let minPrice = Infinity;
       parsedPlans.forEach((p) =>
@@ -198,7 +204,13 @@ exports.updateProduct = async (req, res) => {
     // ✅ Nếu là sản phẩm digital
     if (type === "digital") {
       const plans = JSON.parse(req.body.plans || "[]");
+      const planGroup = JSON.parse(req.body.planGroup || "{}");
+
       product.plans = plans;
+      product.planGroup = {
+        durationName: planGroup.durationName || "Thời hạn",
+        deviceName: planGroup.deviceName || "Thiết bị",
+      };
     }
 
     await product.save();

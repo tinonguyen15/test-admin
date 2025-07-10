@@ -148,27 +148,26 @@ async function loadProductsForUser() {
           .join("");
 
         detailHTML = `
-          <div class="product-details" id="digital-${index}">
-            <div class="size">
-              <strong>Thời hạn:</strong>
-              <div class="size-options" id="duration-${index}">
-                ${durationButtons}
-              </div>
-              <strong>Tháng</strong>
-            </div>
-            <div class="size">
-              <strong>Loại TK:</strong>
-              <div class="size-options" id="device-${index}">
-                ${deviceButtons}
-              </div>
-            </div>
-            <div class="price">
-              <p id="${priceId}" class="product-price">
-                Giá: ${p.plans[0].options[0].price.toLocaleString()}₫
-              </p>
-            </div>
-          </div>
-        `;
+  <div class="product-details" id="digital-${index}">
+    <div class="size">
+      <strong>${p.planGroup?.durationName || "Thời hạn"}:</strong>
+      <div class="size-options" id="duration-${index}">
+        ${durationButtons}
+      </div>
+    </div>
+    <div class="size">
+      <strong>${p.planGroup?.deviceName || "Thiết bị"}:</strong>
+      <div class="size-options" id="device-${index}">
+        ${deviceButtons}
+      </div>
+    </div>
+    <div class="price">
+      <p id="${priceId}" class="product-price">
+        Giá: ${p.plans[0].options[0].price.toLocaleString()}₫
+      </p>
+    </div>
+  </div>
+`;
       } else {
         detailHTML = `<div class="product-details"><p class="product-price">Liên hệ</p></div>`;
       }

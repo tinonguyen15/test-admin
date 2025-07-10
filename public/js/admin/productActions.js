@@ -59,10 +59,7 @@ window.saveEdit = async () => {
         return;
       }
 
-      const variant = {
-        size,
-        price: parseInt(priceStr),
-      };
+      const variant = { size, price: parseInt(priceStr) };
 
       if (imgInput?.files?.length) {
         formData.append("variantImages", imgInput.files[0]);
@@ -84,6 +81,12 @@ window.saveEdit = async () => {
   } else {
     const planBlocks = document.querySelectorAll(".plan-block");
     const plans = [];
+
+    const durationName =
+      document.getElementById("editPlanDurationName")?.value.trim() ||
+      "Thời hạn";
+    const deviceName =
+      document.getElementById("editPlanDeviceName")?.value.trim() || "Thiết bị";
 
     for (let block of planBlocks) {
       const duration = block.querySelector(".edit-plan-duration").value.trim();
@@ -110,6 +113,7 @@ window.saveEdit = async () => {
     }
 
     formData.append("plans", JSON.stringify(plans));
+    formData.append("planGroup", JSON.stringify({ durationName, deviceName }));
     formData.append("type", "digital");
   }
 
@@ -245,6 +249,16 @@ export async function handleEditClick(e) {
     });
   } else {
     optionsArea.innerHTML = `
+      <label>Tên nhóm thời hạn:</label>
+      <input type="text" id="editPlanDurationName" value="${
+        product.planGroup?.durationName || "Thời hạn"
+      }" />
+
+      <label>Tên nhóm thiết bị:</label>
+      <input type="text" id="editPlanDeviceName" value="${
+        product.planGroup?.deviceName || "Thiết bị"
+      }" />
+
       <label>Phân loại nhị cấp:</label>
       <div id="editPlanList"></div>
       <button id="addEditPlan" type="button">+ Thêm Option</button>

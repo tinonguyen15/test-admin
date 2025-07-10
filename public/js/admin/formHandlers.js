@@ -62,6 +62,12 @@ export function setupFormToggles() {
     const formData = new FormData(digitalForm);
     formData.append("type", "digital");
 
+    const durationName =
+      document.getElementById("durationName")?.value.trim() || "Thời hạn";
+    const deviceName =
+      document.getElementById("deviceName")?.value.trim() || "Thiết bị";
+    formData.append("planGroup", JSON.stringify({ durationName, deviceName }));
+
     const plans = [...document.querySelectorAll(".duration-block")].map(
       (block) => {
         const duration = block.querySelector(".plan-duration").value.trim();

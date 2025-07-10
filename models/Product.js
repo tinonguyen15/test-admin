@@ -1,4 +1,3 @@
-// Product.js
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
@@ -12,9 +11,16 @@ const productSchema = new mongoose.Schema(
       enum: ["physical", "digital"],
       required: true,
     },
-    variantGroup: { type: String, default: "Phân loại" }, // ✅ Thêm dòng này
+    variantGroup: { type: String, default: "Phân loại" }, // ✅ Tên biến thể cho physical
     variants: Array,
     plans: Array,
+
+    // ✅ Thêm tên nhóm phân loại cho sản phẩm digital
+    planGroup: {
+      durationName: { type: String, default: "Lựa chọn 1" },
+      deviceName: { type: String, default: "Lựa chọn 2" },
+    },
+
     status: {
       type: String,
       enum: ["con-hang", "het-hang", "sap-ra-mat"],

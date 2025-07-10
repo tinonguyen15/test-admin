@@ -272,20 +272,41 @@
               />
             </div>
 
-            <label
-              >Tên sản phẩm:
-              <input type="text" name="name" required />
-            </label>
+            <div class="name-status">
+              <label
+                >Tên sản phẩm:
+                <input type="text" name="name" required />
+              </label>
 
-            <label
-              >Trạng thái:
-              <select name="status" required>
-                <option value="con-hang">Còn hàng</option>
-                <option value="het-hang">Hết hàng</option>
-                <option value="sap-ra-mat">Sắp ra mắt</option>
-              </select>
-            </label>
+              <label
+                >Trạng thái:
+                <select name="status" required>
+                  <option value="con-hang">Còn hàng</option>
+                  <option value="het-hang">Hết hàng</option>
+                  <option value="sap-ra-mat">Sắp ra mắt</option>
+                </select>
+              </label>
+            </div>
 
+            <div class="option">
+              <label>
+                Tên option 1:
+                <input
+                  type="text"
+                  id="durationName"
+                  placeholder="VD: Gói thuê bao, Hạn dùng..."
+                />
+              </label>
+
+              <label>
+                Tên option 2:
+                <input
+                  type="text"
+                  id="deviceName"
+                  placeholder="VD: Android, iOS, SmartTV..."
+                />
+              </label>
+            </div>
             <div id="durationList" class="duration-list"></div>
             <button type="button" id="addDuration">+ Thêm Options</button>
             <button type="submit">
@@ -414,7 +435,6 @@
     <!-- Script chính khởi tạo -->
     <script type="module" src="/js/admin/admin.js"></script>
     <script src="/js/admin/sidebar.js"></script>
-    <script src="/js/admin/tabs.js"></script>
     <script src="/js/admin/imagePreview.js"></script>
   </body>
 </html>

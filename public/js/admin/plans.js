@@ -13,7 +13,7 @@ export function addDuration() {
   const durationDiv = document.createElement("div");
   durationDiv.classList.add("duration-block");
   durationDiv.innerHTML = `
-    <input type="text" class="plan-duration" placeholder="Thời hạn (VD: 3 tháng)" required />
+    <input type="text" class="plan-duration" placeholder="Option 1" required />
     <div class="option-list"></div>
     <button type="button" class="addOptionBtn">+ Thêm phân nhánh</button>
     <button type="button" class="removeDurationBtn">Xóa Option</button>
@@ -24,7 +24,7 @@ export function addDuration() {
   for (let i = 0; i < 2; i++) {
     const optDiv = document.createElement("div");
     optDiv.innerHTML = `
-      <input type="text" class="plan-device" placeholder="Thiết bị" required />
+      <input type="text" class="plan-device" placeholder="Option 2" required />
       <input type="number" class="plan-price" placeholder="Giá" required />
       <button type="button" onclick="this.parentElement.remove()">Xóa</button>
     `;
